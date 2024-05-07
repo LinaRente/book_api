@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <div>
+        <h1 class="mt-4" style="font-size: 44px">Books 📚</h1>
+        <p class="mt-4" style="font-size: 20px">Choose a category and see our selection</p>
+    </div>
+    <!-- Formulaire d'affichage des buttons et envoi de l'information selectionné par l'utilisateur. -->
+    <form action="/livres" method="POST" class="m-5 text-center">
+        <button type="submit" name="choix" value="horror" class="btn btn-outline-primary m-3">Horror</button>
+        <button type="submit" name="choix" value="fantasy" class="btn btn-outline-primary m-3">Fantasy</button>
+        <button type="submit" name="choix" value="thriller" class="btn btn-outline-primary m-3">Thriller</button>
+        <button type="submit" name="choix" value="poetry" class="btn btn-outline-primary m-3">Poetry</button>
+        <button type="submit" name="choix" value="fiction" class="btn btn-outline-primary m-3">Fiction</button>
+        <button type="submit" name="choix" value="romance" class="btn btn-outline-primary m-3">Romance</button>
+        <button type="submit" name="choix" value="sf" class="btn btn-outline-primary m-3">Science Fisction</button>
+        <button type="submit" name="choix" value="historical_fiction" class="btn btn-outline-primary m-3">Historical Fiction</button>
+        <button type="submit" name="choix" value="humor" class="btn btn-outline-primary m-3">Humor</button>
+    </form>
+
+    {% if datas[0] != "No datas" %}
+    <div class="container">
+        <div class=" row">
+            <!-- cette boucle me permet d'afficher chaque element de datas dans une card -->
+            {% for elem in datas %} 
+            <div class="col-12 col-md-4">
+                <div class="card mb-3" style="max-width: 440px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src={{elem.img_url}} class="card-img" alt="There is no available image for this book!">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ elem.title }}</h5>
+                                <p class="card-text">{{ elem.author }}</p>
+                                <p class="card-text"><small class="text-muted">{{ elem.publish }}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
